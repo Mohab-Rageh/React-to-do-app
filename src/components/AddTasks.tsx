@@ -47,7 +47,7 @@ const AddTasks = ({ tasks, saveAndUpdate }: AddTasksProps) => {
         required
         autoFocus
         dir="auto"
-        maxLength={60}
+        maxLength={25}
         value={addTask}
         onChange={(e) => setAddTask(e.target.value)}
       />

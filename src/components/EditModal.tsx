@@ -92,7 +92,7 @@ const EditModal = ({
             required
             autoFocus
             dir="auto"
-            maxLength={60}
+            maxLength={25}
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
