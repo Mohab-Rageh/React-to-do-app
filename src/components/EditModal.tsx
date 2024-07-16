@@ -1,5 +1,5 @@
 import { CheckIcon, XIcon } from "lucide-react";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState, useRef } from "react";
 
 type Task = {
   id: number;
@@ -24,6 +24,8 @@ const EditModal = ({
 }: EditModalProps) => {
   const [text, setText] = useState<string>(editedTask?.item || "");
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     if (editedTask?.item) {
       setText(editedTask.item);
@@ -40,10 +42,20 @@ const EditModal = ({
     return () => removeEventListener("keydown", closeModalIfEscaped);
   }, [closeEditModal]);
 
+  useEffect(() => {
+    if (isEditing) {
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }, 50);
+    }
+  }, [isEditing]);
+
   //* Need explanation here.
-  if (!isEditing) {
-    return null;
-  }
+  // if (!isEditing) {
+  //   return null;
+  // }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -70,11 +82,11 @@ const EditModal = ({
       >
         <button
           type="button"
-          className="absolute -top-2 -right-2 bg-slate-400 rounded-md"
+          className="absolute -top-2 -right-2 bg-slate-400 rounded-md md:p-[1px]"
           title="Cancel"
           onClick={() => setIsEditing(false)}
         >
-          <XIcon className="transition text-white hover:text-red-600" />
+          <XIcon className="transition text-white size-5 hover:text-red-600" />
         </button>
         <h2 className="dark:text-white mb-2">Update Task:</h2>
         <form
@@ -85,6 +97,7 @@ const EditModal = ({
             Update Task
           </label>
           <input
+            ref={inputRef}
             id="update-task"
             className="w-full rounded-[5px] bg-transparent dark:text-slate-50  caret-bright-blue tracking-wide transition  outline-none"
             type="text"
@@ -100,9 +113,9 @@ const EditModal = ({
             type="submit"
             aria-label={`Confirm edited task to now read ${text}`}
             title="Update Task"
-            className="bg-green-500 rounded-md transition hover:bg-green-600"
+            className="bg-green-500 md:p-[1px] rounded-md transition hover:bg-green-600"
           >
-            <CheckIcon strokeWidth={2} size={24} className="text-white" />
+            <CheckIcon className="text-white size-5" />
           </button>
         </form>
       </div>
