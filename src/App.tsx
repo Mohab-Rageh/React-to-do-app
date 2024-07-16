@@ -26,18 +26,16 @@ const App = () => {
       document.documentElement.classList.add("dark");
       setIsDarkMode(true);
       setIsLoading(false);
-    }
-
-    if (localStorage.getItem("theme") === "light") {
+    } else if (localStorage.getItem("theme") === "light") {
       setIsLoading(false);
-    }
-
-    if (
+    } else if (
       matchMedia("(prefers-color-scheme: dark)").matches &&
       localStorage.getItem("theme") !== "light"
     ) {
       document.documentElement.classList.add("dark");
       setIsDarkMode(true);
+      setIsLoading(false);
+    } else {
       setIsLoading(false);
     }
   }, []);
