@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply flex gap-2 items-center justify-center py-1 px-3 tracking-wide font-semibold shadow-md rounded-lg text-sm;
+  }
+
+  .btn.btn-light {
+    @apply bg-white text-gray-500;
+  }
+
+  .btn.btn-danger {
+    @apply text-white bg-red-600 shadow-red-400/40;
+  }
+
+  li.horizontal-center {
+    @apply justify-center;
+  }
+}
+
+:root {
+  --scrollbar-track-light: #e0e0e0;
+  --scrollbar-thumb-light: #b0b0b0;
+  --scrollbar-thumb-hover-light: #909090;
+  --scrollbar-track-dark: #2c2c34;
+  --scrollbar-thumb-dark: #5e5e5e;
+  --scrollbar-thumb-hover-dark: #888;
+  --body-bg: hsl(0, 0%, 98%);
+  --scrollbar-track: var(--scrollbar-track-light);
+  --scrollbar-thumb: var(--scrollbar-thumb-light);
+  --scrollbar-thumb-hover: var(--scrollbar-thumb-hover-light);
+}
+
+:root.dark {
+  --body-bg: hsl(235, 21%, 11%);
+  --scrollbar-track: var(--scrollbar-track-dark);
+  --scrollbar-thumb: var(--scrollbar-thumb-dark);
+  --scrollbar-thumb-hover: var(--scrollbar-thumb-hover-dark);
+}
+
+html {
+  background-color: var(--body-bg);
+  transition: 150ms;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  transition: 150ms;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 20px;
+  border: 3px solid var(--scrollbar-track);
+  transition: 150ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
