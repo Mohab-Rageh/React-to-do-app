@@ -48,7 +48,7 @@ const EditModal = ({
         if (inputRef.current) {
           inputRef.current.focus();
         }
-      }, 50);
+      }, 100);
     }
   }, [isEditing]);
 
@@ -59,6 +59,13 @@ const EditModal = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    // Verify if the name of the task has been changed.
+    if (text === editedTask?.item) {
+      setIsEditing(false);
+      return;
+    }
+
     handleUpdate(editedTask?.id, text);
   };
 
