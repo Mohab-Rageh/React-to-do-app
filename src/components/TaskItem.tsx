@@ -1,5 +1,7 @@
 import { Trash, Pencil } from "lucide-react";
 
+import { motion } from "framer-motion";
+
 import audio from "../assets/audio/ting-sound-197759.mp3";
 
 type Task = {
@@ -19,7 +21,6 @@ const TaskItem = ({
   task,
   handleCheck,
   handleDelete,
-  motion,
   enterEditMode,
 }: TaskItemProps) => {
   const checkMarkSoundEffect = new Audio(audio);

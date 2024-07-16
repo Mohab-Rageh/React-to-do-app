@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { motion } from "framer-motion";
-
 // Custom Components
 import BackgroundImage from "./components/BackgroundImage";
 import Header from "./components/Header";
@@ -49,7 +47,7 @@ const App = () => {
     return storedTasks ? JSON.parse(storedTasks) : [];
   });
 
-  const [filteredTasks, setFilteredTasks] = useState<Task[]>(tasks);
+  const [filteredTasks, setFilteredTasks] = useState<Task[] | []>(tasks || []);
 
   const [currentFilter, setCurrentFilter] = useState<Filter>("All");
 
@@ -155,7 +153,6 @@ const App = () => {
               handleCheck={handleCheck}
               handleDelete={handleDelete}
               saveAndUpdate={saveAndUpdate}
-              motion={motion}
               enterEditMode={enterEditMode}
             />
 

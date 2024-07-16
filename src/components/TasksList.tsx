@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import TaskItem from "./TaskItem";
 
 type Task = {
@@ -23,7 +23,6 @@ const TasksList = ({
   handleDelete,
   saveAndUpdate,
   enterEditMode,
-  motion,
 }: TasksListProps) => {
   const NumberOfTasksInProgress = () => {
     const tasksNumbers = filteredTasks.filter(
@@ -54,7 +53,6 @@ const TasksList = ({
         task={task}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
-        motion={motion}
         enterEditMode={enterEditMode}
       />
     ));
