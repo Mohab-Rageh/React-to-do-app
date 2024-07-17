@@ -76,7 +76,7 @@ const TasksList = ({
         </motion.li>
       )}
 
-      <li className="text-slate-400 dark:text-slate-500 text-sm bg-white dark:bg-[#25273D] rounded-b-[5px] transition  sticky bottom-0 left-0 z-10">
+      <li className="text-slate-500 dark:text-slate-400 text-sm bg-white dark:bg-[#25273D] rounded-b-[5px] transition  sticky bottom-0 left-0 z-10">
         <pre>{NumberOfTasksInProgress()}</pre>
         <button
           type="button"

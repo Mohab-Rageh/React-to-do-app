@@ -14,7 +14,7 @@ export default {
       colors: {
         "check-background1": "hsl(192, 100%, 67%)",
         "check-background2": "hsl(280, 87%, 65%)",
-        "bright-blue": "hsl(220, 98%, 61%)",
+        "bright-blue": "hsl(220, 98%, 56%)",
         ace: "#c8cbe7",
       },
     },
