@@ -7,7 +7,7 @@ import AddTasks from "./components/AddTasks";
 import TasksList from "./components/TasksList";
 import FilterTasks from "./components/FilterTasks";
 import EditModal from "./components/EditModal";
-// import Footer from "./components/Footer";
+
 
 type Task = {
   id: number;
@@ -20,32 +20,24 @@ type Filter = "All" | "Active" | "Completed";
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.classList.add("dark");
-      setIsDarkMode(true);
-      setIsLoading(false);
-    } else if (localStorage.getItem("theme") === "light") {
-      setIsLoading(false);
-    } else if (
-      matchMedia("(prefers-color-scheme: dark)").matches &&
-      localStorage.getItem("theme") !== "light"
-    ) {
-      document.documentElement.classList.add("dark");
-      setIsDarkMode(true);
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-    }
-  }, []);
-
   const [tasks, setTasks] = useState<Task[]>(() => {
     const storedTasks = localStorage.getItem("tasks");
     return storedTasks ? JSON.parse(storedTasks) : [];
   });
 
-  const [filteredTasks, setFilteredTasks] = useState<Task[] | []>(tasks || []);
+  
+  useEffect(() => {
+    const localStorageTheme=localStorage.getItem("theme")
+    const isUserThemeDark=matchMedia("(prefers-color-scheme: dark)").matches
+    const isDark = localStorageTheme? localStorageTheme === "dark": isUserThemeDark
+    
+    setIsDarkMode(isDark)
+    setIsLoading(false);
+  }, []);
+
+  
+
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>(tasks || []);
 
   const [currentFilter, setCurrentFilter] = useState<Filter>("All");
 
